@@ -3,23 +3,19 @@ from pydantic import BaseModel
 from typing import Optional, Dict, List
 
 
-class TrackingResponse(BaseModel):
-    service_name: str
-    comprobante: Optional[str]
-    data: Dict[str, str]
-    states: Dict[str, Dict[str, str]]
-
-
 class Estado(BaseModel):
+    id: Optional[str]
     fecha_evento: str
-    comentarios: Optional[str]
+    state: Optional[str]
+    evento: Optional[str]
 
 
 class TrackingState(BaseModel):
     registro: Estado
-    transito: Estado
-    destino: Estado
-    entregado: Estado
+    transito: Optional[List[Estado]]
+    destino: Optional[Estado]
+    entregado: Optional[Estado]
+    last_state: Optional[Estado]
 
 
 class Data(BaseModel):
@@ -27,9 +23,21 @@ class Data(BaseModel):
     destinatario: str
     origen: str
     destino: str
-    ultimo_estado: str
+    tipo_entrega: Optional[str]
+    monto_pagar: Optional[float]
+
+
+class Package(BaseModel):
     unidad_medida: Optional[str]
     cantidad_paquetes: Optional[int]
     peso: Optional[float]
-    monto_pagar: Optional[float]
     contenido: Optional[str]
+
+
+class TrackingResponse(BaseModel):
+    service_name: str
+    tracking_number: str
+    comprobante: Optional[str]
+    pkg_info: Optional[List[Package]]
+    data: Data
+    states: TrackingState
