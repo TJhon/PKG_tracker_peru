@@ -50,27 +50,18 @@ class Tracking:
         )
 
 
-class TrackingService:
+class MarvisurService:
     def __init__(self):
         self.url = "https://jtfp1lubog.execute-api.us-east-1.amazonaws.com/produccion/api-marvisur"
 
-    def get_tracking(self, serie, numero):
+    def get_tracking(self, serie: str, numero: str):
         payload = {"serie": serie, "numero": numero}
         response = requests.post(self.url, json=payload)
-        print(response.json())
+        # print(response.json())
         if response.status_code == 200:
-            json_data = response.json()
-            if isinstance(json_data, list) and len(json_data) > 0:
-                return [Tracking.tracking_from_json(item) for item in json_data[0]]
-            else:
-                return []
+            data = response.json()
+            data["service_name"] = "marvisur"
+            data["num_tracking"] = serie + "-" + numero
+            return data
         else:
             raise Exception(f"Error en la solicitud: {response.status_code}")
-
-
-# Uso de la clase
-service = TrackingService()
-result = service.get_tracking("v001", "12344")
-# print(result)
-for tracking in result:
-    print(f"ID: {tracking.ID}, GUIA: {tracking.GUIA}, FECEVENTO: {tracking.FECEVENTO}")
