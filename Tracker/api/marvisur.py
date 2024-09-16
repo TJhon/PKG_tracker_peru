@@ -1,6 +1,7 @@
 import json
 import requests
 from datetime import datetime
+from ..models.marvisur import marvisur_response
 
 
 class Tracking:
@@ -62,6 +63,6 @@ class MarvisurService:
             data = response.json()
             data["service_name"] = "marvisur"
             data["num_tracking"] = serie + "-" + numero
-            return data
+            return marvisur_response(data)
         else:
             raise Exception(f"Error en la solicitud: {response.status_code}")

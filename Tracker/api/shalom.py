@@ -1,5 +1,6 @@
 import requests
 from typing import Dict, Any
+from ..models.shalom import shalom_response
 
 
 class ShalomService:
@@ -44,4 +45,4 @@ class ShalomService:
             )
             content["comprobante"] = pdf_data.get("data", {}).get("pdf")
 
-        return content
+        return shalom_response(content)

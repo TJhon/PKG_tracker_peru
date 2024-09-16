@@ -1,4 +1,5 @@
 import requests
+from ..models.olva import olva_response
 
 
 class OlvaService:
@@ -22,7 +23,7 @@ class OlvaService:
 
             data = response.json()
             data["service_name"] = "olva"
-            data["num_tracking"] = tracking_number + "-" + year
-            return data
+            data["num_tracking"] = str(tracking_number) + "-" + year
+            return olva_response(data)
         else:
             raise Exception(f"Error en la solicitud: {response.status_code}")
