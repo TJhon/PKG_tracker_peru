@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "tracker peru"
+version = "0.1.0"
+description = "API para rastrear pedidos"
+authors = ["tjhon <fr.jhonk@gmail.com>"]
+license = "GNU"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.x"
+requests = "2.32.3"
+pydantic = "^2.9.1"
+
+
+[tool.poetry.group.dev.dependencies]
+python-dotenv = "^1.0.1"
+rich = "^13.8.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
