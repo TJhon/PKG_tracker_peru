@@ -41,4 +41,4 @@ async def check(n_tracking: str):
 
 @app.get("/")
 async def check():
-    return "fine"
+    return {"everything": "is fine"}
