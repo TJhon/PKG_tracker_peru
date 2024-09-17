@@ -17,7 +17,6 @@ if __name__ == "__main__":
 
     print(router.route_tracking("v004-167414"))  # Marvisur
 
-    m1 = router.route_tracking("v004-0167414")  # Marvisur
 
     print(router.route_tracking("v019-0067424"))  # Marvisur
     print(router.route_tracking("1234556-23"))  # Olva
