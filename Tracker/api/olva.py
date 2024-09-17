@@ -23,7 +23,7 @@ class OlvaService:
 
             data = response.json()
             data["service_name"] = "olva"
-            data["num_tracking"] = str(tracking_number) + "-" + year
+            data["num_tracking"] = str(tracking_number) + "-" + year[-2:]
             return olva_response(data)
         else:
             raise Exception(f"Error en la solicitud: {response.status_code}")
